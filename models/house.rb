@@ -41,8 +41,22 @@ class House
     return houses
   end
 
+  def self.return_house_name_by_id(student_house_id)
+    sql = "SELECT name FROM houses
+    WHERE id = $1"
+    values = [student_house_id]
+    house_name_data = SqlRunner.run(sql, values)
+    house_name = map_items(house_name_data).first.name
+  end
+
   def self.map_items(house_data)
     return house_data.map { |house| House.new(house) }
   end
 
+  def self.delete_all
+    sql = "DELETE FROM houses"
+    SqlRunner.run(sql)
+  end
+
+  
 end

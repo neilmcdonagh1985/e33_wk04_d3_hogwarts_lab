@@ -1,0 +1,6 @@
+<% @students.each do |student| %>
+  <p>Name: <%= student.format_name %></p>
+  <p>House: <%= @houses.return_house_name_by_id(student.house_id) %></p>
+  <p> <a href="/students/<%= student.id %>">Show Student Details</a></p>
+  <hr />
+<% end %>
